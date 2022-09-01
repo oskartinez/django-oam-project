@@ -1,0 +1,82 @@
+{% extends 'base.html'  %}
+
+{% block contenido %}
+    <h2>Ficha Producto</h2>
+    <div class="d-flex align-content-start flex-wrap">
+        
+        <div class="card text-dark bg-light mb-3 w-100 ">
+            <div class="card-header titulo w-100 ">{{ articulo.nombre }}</div>
+    
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    {% if articulo.imagen %}
+                    <img src="{{ articulo.imagen.url }}" style="max-width:150px;">
+                    {% endif %}
+
+                    {{ articulo.descripcion }} 
+                    <p class="blog-post-meta">
+                      <span style="font-weight: bold;">
+                          Fecha:
+                      </span>
+                          {{articulo.fecha|date:'y-m-d'}} |
+                      <span style="font-weight: bold;">  Categoría:</span>
+                      {% if articulo.categoria %}
+                      {{articulo.categoria}}
+                      {% else %}
+                      n/a
+                      {% endif %}
+                  </p>
+                    
+                </li>
+                
+                <li class="list-group-item">
+                    <span style="margin-right: 10px;
+                    font-weight: bold;">
+                        Precio:
+                    </span>
+                    $ {{ articulo.precio }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a class="btn btn-info ml-3" href=" {% url 'listar_stock' %} ">
+        << Volver
+    </a>
+    <a class="btn btn-danger ml-3" onclick="document.getElementById('id01').style.display='block'">
+        Eliminar
+    </a>
+
+    <div id="id01" class="modal mt-4" >
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+      <form class="modal-content" action="{% url 'eliminar_articulo' articulo.pk %}">
+        <div class="container p-3">
+          <h2>Eliminar Producto</h2>
+          <p>¿Está seguro que desea eliminar el producto?</p>
+        
+          <div class="clearfix">
+            
+            <a class="cancelbtn" href="#" onclick="document.getElementById('id01').style.display='none'">
+                Cancelar
+            </a>
+            <a class="deletebtn" href="{% url 'eliminar_articulo' articulo.pk %}">
+                Eliminar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+    
+
+{% endblock %}

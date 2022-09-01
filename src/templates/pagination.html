@@ -1,0 +1,42 @@
+<nav aria-label="Page navigation example" class="d-flex justify-content-center w-100">
+    <ul class="pagination">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item mx-1"><a class="btn btn-success" href="?page={{ page_obj.previous_page_number }}">« Anterior</a></li>
+        {% else %}
+        <li class="page-item mx-1 disabled"><a class="page-link " href="#" style="background: #d8ff9b;">« Anterior</a></li>
+        {% endif %}
+
+        {% if page_obj.number > 3 %}
+        <li class="page-item mx-1"><a class="btn btn-success" href="?page=1">1</a></li>
+            {% if page_obj.number > 4 %}
+            <li class="page-item mx-1 disabled"><a class="page-link " href="#">...</a></li>
+            {% endif %}
+        {% endif %}
+        
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item mx-1 disabled"><a class="page-link" href="?page={{ num }}" style="background: #d8ff9b;">{{ num }}</a></li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item mx-1"><a class="btn btn-success" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+                <li class="page-item mx-1 disabled"><a class="page-link " href="#">...</a></li>
+                <li class="page-item mx-1"><a class="btn btn-success" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+            {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                <li class="page-item mx-1"><a class="btn btn-success" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+            {% endif %}
+
+            <li class="page-item mx-1"><a class="btn btn-success" href="?page={{ page_obj.next_page_number }}">Siguiente »</a></li>
+        {% else %}
+            <li class="page-item mx-1 disabled"><a class="page-link" href="#" style="background: #d8ff9b;">Siguiente »</a></li>
+        {% endif %}
+
+    </ul>   
+</nav>
+
+  

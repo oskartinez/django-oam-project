@@ -1,0 +1,56 @@
+{% extends 'base.html'  %}
+{% load static %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" style="background-color:lightgreen;">
+        {{ message }}
+    </div>
+    {% endfor%}
+{% endif %}
+
+
+{% block contenido %}
+    <h2>Productos
+    <a class="btn btn-success ml-3  btn-sm" href="{% url 'crear_articulo' %}">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </a>
+</h2>
+        <div class="d-flex align-content-start flex-wrap">
+            {% for objeto in lista_articulos %}
+            <div class="card card-nuevo mb-3">
+                {% if objeto.imagen %}
+                <img class="card-img-top card-img-top-nuevo" src="{{ objeto.imagen.url }}" >
+                {% else %}
+                <img class="card-img-top card-img-top-nuevo" src="{% static 'no-imagen.png' %}" >
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ objeto.nombre }}</h5>
+                    <p class="card-text">{{ objeto.descripcion }}</p>
+                    <p class="blog-post-meta mb-0">
+                        <span style="font-weight: bold;">
+                            Fecha:
+                        </span>
+                            {{objeto.fecha|date:'d/m/Y'}} |
+                        <span style="font-weight: bold;">  Categoría:</span>
+                        {% if objeto.categoria %}
+                            {{objeto.categoria}}
+                        {% else %}
+                            n/a
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        <li class=" d-flex justify-content-end">
+                            <a class="btn btn-primary btn-sm" href="{% url 'actualizar_articulo' objeto.pk %}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm mx-1" href="{% url 'eliminar_articulo' objeto.pk %}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </p>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+{% endblock %}

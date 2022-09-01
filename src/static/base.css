@@ -1,0 +1,207 @@
+body {
+    background-color: lightgray;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  .blog-post-meta {
+    color: gray;
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+  /* Set a style for all buttons */
+  .cancelbtn, .deletebtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .cancelbtn:hover, .deletebtn:hover {
+    opacity: 1;
+  }
+
+  /* Float cancel and delete buttons and add an equal width */
+  .cancelbtn,
+  .deletebtn {
+    float: left;
+    width: 50%;
+  }
+
+  /* Add a color to the cancel button */
+  .cancelbtn {
+    background-color: #ccc;
+    color: black;
+  }
+
+  /* Add a color to the delete button */
+  .deletebtn {
+    background-color: #f44336;
+  }
+
+  /* Add padding and center-align text to the container */
+  /* .container {
+    padding: 16px;
+    text-align: center;
+  } */
+
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #565758a3;
+    padding-top: 50px;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* Style the horizontal ruler */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+
+  /* The Modal Close Button (x) */
+  .close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Change styles for cancel button and delete button on extra small screens */
+  @media screen and (max-width: 300px) {
+
+    .cancelbtn,
+    .deletebtn {
+      width: 100%;
+    }
+  }
+
+  main > .container {
+    padding: 60px 15px 16px;
+  }
+
+  main {
+    padding-top: 20px;
+  }
+  .transparente {
+    background-color: #ffffffba;
+  }
+
+  body {
+    background: url("/static/vegetables-tapiz.jpg");
+  }
+
+  .card {
+    background-color:transparent;
+  }
+
+  .pie {
+    color: white;
+    /* font-weight: bold; */
+    font-family: sans-serif;
+  }
+
+  .fa-3 {
+    font-size: 4em;
+}
+.fa-2 {
+  font-size: 2em;
+}
+.white {
+  color:white;
+}
+  
+.verde:hover {
+  color: #d8ff9b !important;
+  /*border-bottom: 2px solid !important;  */
+  transition: 0.8s;
+}
+
+.titulo {
+  font-size: 1.5em;
+    color: green;
+    text-decoration: none;
+    font-weight: 600;
+  
+}
+.titulo:hover {
+  color:#19b550 !important;
+  
+}
+.card-header {
+  background-color: rgb(214 241 182 / 93%);
+}
+
+.sticky-fondo {
+  position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.card-nuevo {
+    background-color: transparent;
+    max-width: 30%;
+    margin-right: 15px;
+    /* max-height: 150px; */
+}
+
+.card-img-top-nuevo {
+  height: 150px;
+}
+

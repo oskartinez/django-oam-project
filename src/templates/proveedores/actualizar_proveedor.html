@@ -1,0 +1,32 @@
+{% extends 'base.html'  %}
+
+{% block contenido %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-error" role="alert" style="background-color:lightcoral;">
+        {{ message }}
+    </div>
+    {% endfor%}
+{% endif %}
+
+    <h2>Editar Proveedor: {{ object }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="d-flex align-content-start flex-wrap">
+            <div class="card text-dark bg-light mb-3 w-100">
+                
+                <div class="bd-example p-3">
+
+                    {{ form.as_p }}
+
+                </div>
+            </div>
+            <a class="btn btn-info m-2" href=" {% url 'listar_proveedores' %} ">
+                << Volver
+            </a>
+            <button class="btn btn-success m-2">Guardar</button>
+        </div>
+    </form>
+    
+{% endblock %}
