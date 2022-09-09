@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from datetime import datetime
 
-from .models import Articulo, Proveedor
+from .models import Articulo, Proveedor, Categoria
 
-from .forms import FormularioProductos, FormularioArticuloDescuento, FormularioProveedor
+from .forms import FormularioProductos, FormularioArticuloDescuento, FormularioProveedor, FormularioCategoria
 
 from django.contrib import messages
 
@@ -78,12 +78,36 @@ class CrearArticulo(CreateView):
     #fields = ['nombre', 'precio', 'fecha', 'descripcion', 'imagenprod', 'categoria']
     success_url = reverse_lazy('listar_stock')
 
+    def form_valid(self, form):
+        f = form.save(commit=False)
+        f.fecha = datetime.now()
+        f = form.save(commit=True)
+
+        return super(CrearArticulo, self).form_valid(form)
+
 
 
 class ListarArticulos(ListView):
     model = Articulo
+    paginate_by = 3
     template_name = 'stock/listar_stock.html'
-    context_object_name = 'articulos'
+    context_object_name = 'lista_articulos'
+
+class BusquedaArticulos(ListView):
+    model = Articulo
+    paginate_by = 3
+    template_name = 'stock/busqueda_stock.html'
+    context_object_name = 'lista_articulos'
+
+    def get_queryset(self):
+        queryset = Articulo.objects.all()
+  
+        nombre_articulo = self.request.GET.get('nombre')
+
+        if nombre_articulo is not None:
+            queryset = queryset.filter(nombre__icontains=nombre_articulo)
+        
+        return queryset
 
 class ActualizarArticulo(UpdateView):
     model = Articulo
@@ -105,7 +129,7 @@ class DetalleArticulo(DetailView):
 # Views de Proveedores
 class ListarProveedores(ListView):
     model = Proveedor
-    paginate_by = 5
+    paginate_by = 3
     template_name = 'proveedores/listar.html'
     context_object_name = 'lista_proveedores'
 
@@ -125,3 +149,27 @@ class EliminarProveedores(DeleteView):
     model = Proveedor
     template_name = 'proveedores/eliminar_proveedor.html'
     success_url = reverse_lazy('listar_proveedores')
+
+# Views de Categorias
+class ListarCategorias(ListView):
+    model = Categoria
+    paginate_by = 3
+    template_name = 'categorias/listar.html'
+    context_object_name = 'lista_categoria'
+
+class CrearCategorias(CreateView):
+    model = Categoria
+    template_name = 'categorias/crear_categoria.html'
+    form_class = FormularioCategoria
+    success_url = reverse_lazy('listar_categorias')
+
+class ActualizarCategorias(UpdateView):
+    model = Categoria
+    template_name =  'categorias/actualizar_categoria.html'
+    form_class = FormularioCategoria
+    success_url = reverse_lazy('listar_categorias')
+
+class EliminarCategorias(DeleteView):
+    model = Categoria
+    template_name = 'categorias/eliminar_categoria.html'
+    success_url = reverse_lazy('listar_categorias')

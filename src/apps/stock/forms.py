@@ -1,5 +1,5 @@
 from django import forms
-from .models import Articulo, Proveedor
+from .models import Articulo, Categoria, Proveedor
 
 class DateInput(forms.DateInput):
 	input_type = 'date'
@@ -35,10 +35,22 @@ class FormularioProveedor(forms.ModelForm):
     #descuento = forms.FloatField(required=False)
     class Meta:
         model = Proveedor
-        fields =  ['nombre']
+        fields =  ['nombre', 'domicilio', 'telefono']
 
     def __init__(self, *args, **kwargs):
         super(FormularioProveedor, self).__init__(*args, **kwargs)
+
+        self.fields['nombre'].widget.attrs['class'] = "form-control"
+        self.fields['domicilio'].widget.attrs['class'] = "form-control"
+        self.fields['telefono'].widget.attrs['class'] = "form-control"
+
+class FormularioCategoria(forms.ModelForm):
+    class Meta:
+        model = Categoria
+        fields = ['nombre']
+
+    def __init__(self, *args, **kwargs):
+        super(FormularioCategoria, self).__init__(*args, **kwargs)
 
         self.fields['nombre'].widget.attrs['class'] = "form-control"
       

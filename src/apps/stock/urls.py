@@ -3,7 +3,8 @@ from . import  views  #CrearArticulo, ListarProveedores, home_view, listar_stock
 
 urlpatterns = [
     path('home/', views.home_view, name='home'),
-    path('stock/listar/', views.listar_stock, name='listar_stock'),
+    path('stock/listar/', views.ListarArticulos.as_view(), name='listar_stock'),
+    path('stock/buscar/', views.BusquedaArticulos.as_view(), name='buscar'),
     #path('stock/detalle/<int:pk>', views.detalle_articulo, name='detalle'),
     path('stock/eliminar/<int:pk>/', views.eliminar_articulo, name='eliminar_articulo'),
     #path('stock/crear/', crear_articulo, name='crear_articulo'),
@@ -19,4 +20,11 @@ urlpatterns = [
     path('proveedores/crear/', views.CrearProveedor.as_view(), name='crear_proveedores'),
     path('proveedores/actualizar/<int:pk>', views.ActualizarProveedores.as_view(), name='actualizar_proveedores'),
     path('proveedores/eliminar/<int:pk>/', views.EliminarProveedores.as_view(), name='eliminar_proveedores'),
+
+    
+    #url de categorias
+    path('categorias/listar/', views.ListarCategorias.as_view(), name='listar_categorias'),
+    path('categorias/crear/', views.CrearCategorias.as_view(), name='crear_categoria'),
+    path('categorias/actualizar/<int:pk>', views.ActualizarCategorias.as_view(), name='actualizar_categoria'),
+    path('categorias/eliminar/<int:pk>/', views.EliminarCategorias.as_view(), name='eliminar_categoria'),
 ]

@@ -10,6 +10,8 @@ class Categoria(models.Model):
 
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=30)
+    domicilio = models.CharField(max_length=90, null=True, blank=True)
+    telefono = models.CharField(max_length=60, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Proveedores'
@@ -19,7 +21,7 @@ class Proveedor(models.Model):
 class Articulo(models.Model):
     nombre = models.CharField(max_length=30)
     precio = models.FloatField()
-    fecha = models.DateTimeField(null=True)
+    fecha = models.DateTimeField(default=None, null=True)
     descripcion = models.CharField(max_length=50, default='-')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, blank=True, null=True)
     imagen = models.ImageField(upload_to='imagenes_productos/', null=True, blank=True)

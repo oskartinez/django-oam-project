@@ -102,3 +102,4 @@ Desktop.ini
 # Thumbnails
 ._*
 Thumbs.db
+src/proyecto.sqlite3
